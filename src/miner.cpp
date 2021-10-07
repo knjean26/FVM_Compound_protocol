@@ -202,16 +202,17 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
             minGasPrice = std::max(minGasPrice, (uint64_t)stakerMinGasPrice);
         }
     }
-    // hardBlockGasLimit = fvmDGP.getBlockGasLimit(nHeight);
-    // softBlockGasLimit = gArgs.GetArg("-soft-block-gas-limit", hardBlockGasLimit);
-    softBlockGasLimit = std::min(softBlockGasLimit, hardBlockGasLimit);
-    // txGasLimit = gArgs.GetArg("-max-tx-gas-limit", softBlockGasLimit);
 
-    hardBlockGasLimit = UINT64_MAX;
-    softBlockGasLimit = UINT64_MAX;
-    txGasLimit = UINT64_MAX;
+    hardBlockGasLimit = fvmDGP.getBlockGasLimit(nHeight);
+    hardBlockGasLimit = UINT32_MAX;
+    softBlockGasLimit = gArgs.GetArg("-soft-block-gas-limit", hardBlockGasLimit);
+    softBlockGasLimit = std::min(softBlockGasLimit, hardBlockGasLimit);
+    softBlockGasLimit = UINT32_MAX;
+    txGasLimit = gArgs.GetArg("-max-tx-gas-limit", softBlockGasLimit);
+    txGasLimit = UINT32_MAX;
+
     //nBlockMaxWeight = blockSizeDGP ? blockSizeDGP * WITNESS_SCALE_FACTOR : nBlockMaxWeight;
-    nBlockMaxWeight = 320000000;
+    nBlockMaxWeight = 429496729;
     
     dev::h256 oldHashStateRoot(globalState->rootHash());
     dev::h256 oldHashUTXORoot(globalState->rootHashUTXO());
