@@ -194,7 +194,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     FvmDGP fvmDGP(globalState.get(), fGettingValuesDGP);
     globalSealEngine->setFvmSchedule(fvmDGP.getGasSchedule(nHeight));
-    uint32_t blockSizeDGP = fvmDGP.getBlockSize(nHeight);
+    //uint32_t blockSizeDGP = fvmDGP.getBlockSize(nHeight);
     minGasPrice = fvmDGP.getMinGasPrice(nHeight);
     if(gArgs.IsArgSet("-min-tx-gas-price")) {
         CAmount stakerMinGasPrice;
@@ -202,11 +202,14 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
             minGasPrice = std::max(minGasPrice, (uint64_t)stakerMinGasPrice);
         }
     }
-    hardBlockGasLimit = fvmDGP.getBlockGasLimit(nHeight);
-    softBlockGasLimit = gArgs.GetArg("-soft-block-gas-limit", hardBlockGasLimit);
+    // hardBlockGasLimit = fvmDGP.getBlockGasLimit(nHeight);
+    // softBlockGasLimit = gArgs.GetArg("-soft-block-gas-limit", hardBlockGasLimit);
     softBlockGasLimit = std::min(softBlockGasLimit, hardBlockGasLimit);
-    txGasLimit = gArgs.GetArg("-max-tx-gas-limit", softBlockGasLimit);
+    // txGasLimit = gArgs.GetArg("-max-tx-gas-limit", softBlockGasLimit);
 
+    hardBlockGasLimit = UINT64_MAX;
+    softBlockGasLimit = UINT64_MAX;
+    txGasLimit = UINT64_MAX;
     //nBlockMaxWeight = blockSizeDGP ? blockSizeDGP * WITNESS_SCALE_FACTOR : nBlockMaxWeight;
     nBlockMaxWeight = 320000000;
     

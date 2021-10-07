@@ -4,11 +4,11 @@
 
 echo "Generating a block every 15 seconds. Press [CTRL+C] to stop.."
 
-address=`firovm-cli getnewaddress`
+address=`./src/firovm-cli getnewaddress`
 
 while :
 do
         echo "Generate a new block `date '+%d/%m/%Y %H:%M:%S'`"
-        firovm-cli generatetoaddress 1 $address
-        sleep 15
+        ./src/firovm-cli generatetoaddress 1 $address 100000
+        sleep 10
 done

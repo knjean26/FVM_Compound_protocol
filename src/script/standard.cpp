@@ -222,7 +222,7 @@ txnouttype Solver(const CScript& scriptPubKey, std::vector<std::vector<unsigned 
                         if (version.rootVM != 0 && val < 1) {
                             return TX_NONSTANDARD;
                         }
-                        if (val > MAX_BLOCK_GAS_LIMIT_DGP) {
+                        if (val > UINT_MAX) {
                             //do not allow transactions that could use more gas than is in a block
                             return TX_NONSTANDARD;
                         }
