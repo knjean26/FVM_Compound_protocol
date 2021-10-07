@@ -21,16 +21,10 @@ static const uint64_t MAX_MIN_GAS_PRICE_DGP = 10000;
 static const uint64_t DEFAULT_MIN_GAS_PRICE_DGP = 40;
 
 static const uint64_t MIN_BLOCK_GAS_LIMIT_DGP = 1000000;
-<<<<<<< HEAD
-static const uint64_t MAX_BLOCK_GAS_LIMIT_DGP = UINT64_MAX;;
-static const uint64_t DEFAULT_BLOCK_GAS_LIMIT_DGP = UINT64_MAX;;
-
-=======
 // static const uint64_t MAX_BLOCK_GAS_LIMIT_DGP = 1000000000;
 // static const uint64_t DEFAULT_BLOCK_GAS_LIMIT_DGP = 40000000;
 static const uint64_t MAX_BLOCK_GAS_LIMIT_DGP = UINT32_MAX;
 static const uint64_t DEFAULT_BLOCK_GAS_LIMIT_DGP = UINT32_MAX;
->>>>>>> dca9f4cbd54b40ab2d13ae774a776c0249638f87
 
 class FvmDGP {
     
