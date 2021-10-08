@@ -72,15 +72,19 @@ Build
         ./firovm-cli generatetoaddress 200 <your address>
         
 
-3.  Run `./firovm-cli getnewaddress` to create an address that will be use in test cases. You will need 2 address. One for sender and another one for receiver.
+3.  Run `./firovm-cli getnewaddress` to create an address that will be use in test cases.
 
-4.  Copy and paste `senderAddress`, `receiverAddress`, and `contractAddress` at the beginning of each test file.
+4.  Copy and paste `senderAddress` and `contractAddress` at the beginning of each test file. Include your ABI for each contract, name it `interface.json` and set a path to variable at the beginning of each test file.
 
-    test_sh/Comptroller.sh
+    test_sh/test_setupMycToken.sh
    
-        senderAddress="<senderAddress>"
-        receiverAddress="<receiverAddress>"
-        contractAddress="<contractAddress>"
+        myCTokenAddress=<cUSDT address>
+        cUSDTinterfaceJSON=<path to interface.json>
+
+        myUSDTAddress=<USDT address>
+        USDTinterfaceJSON=<path to interface.json>
+
+        senderAddress=<sender address>
         
     Note: spaces are not allowed, so please be careful!
 
