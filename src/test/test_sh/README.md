@@ -12,7 +12,7 @@ Compound Protocol is an Ethereum project that focuses on allowing borrowers to t
 Development Process
 -------------------
 
-The `test_sh` branch is regularly built and tested by forking the sorce code from the Compound Protocol. The test cases are currently focus on CToken and Comptroller.
+The `test_sh` branch is regularly built and tested by forking the sorce code from Compound Protocol. The test cases are currently focus on CToken and Comptroller.
 
 `CToken` is the primary means of interacting with the Compound Protocol. When a user mints, redeems, borrows, repays a borrow, liquidates a borrow, or transfers cTokens, she will do so using the cToken contract.
 
@@ -29,7 +29,8 @@ Build
 
         git clone https://github.com/knjean26/FVM_Compound_protocol/new/main/src/test/test_sh
 
-2.  The bytecode and abi of each contract can be found inside `/test_sh/bytecode` and `test_sh/abi`.
+2.  The bytecode and abi of each contract can be found inside https://github.com/knjean26/Compound_FVM `/<contract name>/byte.txt` and `/<contract name>/interface.json`. You can also compile your own byte code and ABI using [Remix](https://remix.ethereum.org)
+3.  
     Copy the bytecode of the contract you want to test and paste it using this command
     
         ./firovm-cli createcontract <bytecode>
@@ -60,7 +61,16 @@ Build
           "code": "..."
         }
         
-    If the terminal shows this error `Address could not be found`, you might run out of gas. Run `./autogen.sh` to generate a new block every 15 minutes (by default) and repeat the create contract step once again.
+    If the terminal shows this error `Address could not be found`, you might run out of gas. Run `./auto_block_generate.sh` to generate a new block every 15 minutes (by default) and repeat the create contract step once again.
+    
+    Use the command
+    
+        ./firovm-cli getbalance <your address>
+        
+    If your wallet is still empty, you can use this command to generate to your address directly
+    
+        ./firovm-cli generatetoaddress 200 <your address>
+        
 
 3.  Run `./firovm-cli getnewaddress` to create an address that will be use in test cases. You will need 2 address. One for sender and another one for receiver.
 
@@ -83,8 +93,8 @@ Testing
     You can uncommend the function name at the bottome of each code to test each function separately. You can also uncommend all the function names to test all the function inside the contract.
     On command line, type `./ + name of test file`. For example
     
-        ./interestRateTest.sh
-        ./Comptroller.sh
+        ./test_setupMycToken.sh
+        ./test_mintMycToken.sh
 
 ### Notes 
 
